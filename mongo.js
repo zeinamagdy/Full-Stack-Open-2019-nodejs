@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const mongoose = require('mongoose')
 mongoose.set('useFindAndModify', false)
 
@@ -16,8 +17,8 @@ mongoose.connect(url, {
 })
     .then(() => console.log('DB Connected!'))
     .catch(err => {
-        console.log(`DB Connection Error: ${err}`);
-    });
+        console.log(`DB Connection Error: ${err}`)
+    })
 
 
 const personSchema = new mongoose.Schema({
@@ -28,13 +29,13 @@ const personSchema = new mongoose.Schema({
 const Person = mongoose.model('Person', personSchema)
 
 
-if (process.argv[3] != undefined && process.argv[4] != undefined) {
+if (process.argv[3] !== undefined && process.argv[4] !== undefined) {
     const person = new Person({
         name: process.argv[3],
         number: process.argv[4],
     })
 
-    person.save().then(response => {
+    person.save().then(() => {
         console.log(`added ${process.argv[3]} number ${process.argv[4]} to phonebook`)
         mongoose.connection.close()
     })
